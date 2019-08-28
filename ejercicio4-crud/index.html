@@ -24,22 +24,61 @@
         <br />
         <input class="form-control" type="text" id="propietario" placeholder="Propietario" />
 
+
+        <br>
+        <!-- Agregar un campo de selección -->
+        <select class="form-control" name="" id="tipo">
+            <option value="moto">Moto</option>
+            <option value="carro">Carro</option>
+            <option value="camion">Camión</option>
+            <option value="tricimoto">Tricimoto</option>
+        </select>
+        <br>
+        <input class="form-control" id="modelo" type="number" placeholder="Modelo" />
+        <br>
+        <button class="btn btn-primary" onclick="crearAutomotor()">Crear automotor </button>
     </div>
 
-    <!-- Agregar un campo de selección -->
-    <select name="" id="tipo">
-        <option value="moto">Moto</option>
-        <option value="carro">Carro</option>
-        <option value="camion">Camión</option>
-        <option value="tricimoto">Tricimoto</option>
-    </select>
-
-    <input id="modelo" type="number" placeholder="Modelo" />
-
-    <button class="btn btn-primary" onclick="crearAutomotor()">Crear automotor </button>
-
-
     <!-- </form> -->
+
+    <hr>
+
+    <table border="1">
+        <thead>
+            <td>Serie</td>
+            <td>Placa</td>
+            <td>Modelo</td>
+            <td>Propietario</td>
+            <td>Ac. Modificar</td>
+            <td>Ac. Eliminar</td>
+        </thead>
+        <tbody id="list_body">
+
+        </tbody>
+
+    </table>
+
+    <!-- 
+Ejemplo de tabla 
+
+  Fila 1 
+   <tr>
+     Columna 1 
+        <td rowspan="3" colspan="3">Ejemplo 1</td>
+    </tr>
+ Fila 2 
+    <tr>
+       Columna 1
+        <td>Ejemplo 1</td>
+    </tr>
+   Fila 3
+    <tr>
+       Columna 1 
+        <td>Ejemplo 1</td>
+    </tr>
+
+     -->
+
 
     <!-- Importar el javascript -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

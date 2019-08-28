@@ -2,17 +2,42 @@
 
 let automotores = []
 
+listarAutomotores()
+// Listar los automotores en una tabla
+function listarAutomotores() {
+    //Cargar automotores del localstorage
+    let str_automotores = localStorage.getItem("lista_automores")
+    automotores = JSON.parse(str_automotores)
+
+
+    let tbody = document.getElementById('list_body')
+    tbody.innerHTML = ""
+    for (let index = 0; index < automotores.length; index++) {
+        let element = automotores[index];
+        let row = ""
+        row += "<tr>"
+        row += "<td>" + element['serie'] + "</td>"
+        row += "<td>" + element['placa'] + "</td>"
+        row += "<td>" + element['modelo'] + "</td>"
+        row += "<td>" + element['propietario'] + "</td>"
+        row += "<td><button> Modificar </button> </td>"
+        row += "<td><button onclick='eliminar("+ index + ")'> Eliminar </button> </td>"
+        row += "</tr>"
+        tbody.innerHTML += row
+    }
+}
+
 //Funcion para crear un automotor
 function crearAutomotor() {
-
     let automotor = obtenerDatos()
     let es_valido = validarDatos(automotor)
     if (es_valido) {
         //Agregar el automotor a una lista
         automotores.push(automotor)
+        localStorage.setItem("lista_automores", JSON.stringify(automotores))
         console.log(automotores);
-
     }
+    listarAutomotores()
 
 }
 
@@ -63,3 +88,15 @@ function obtenerDatos() {
     return automotor
 
 }
+
+/**
+ * PASO 1: Obtener la fila - OK
+ * PASO 2: Eliminar el objeto de la fila pista "splice"
+ * PASO 3: Actualizar el localStorage
+ * @param {*} fila 
+ */
+function eliminar(fila) {
+    console.log("Fila", fila);
+    //
+}
+
