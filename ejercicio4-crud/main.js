@@ -6,9 +6,12 @@ listarAutomotores()
 // Listar los automotores en una tabla
 function listarAutomotores() {
     //Cargar automotores del localstorage
-    let str_automotores = localStorage.getItem("lista_automores")
+    let str_automotores = localStorage.getItem("lista_automotores")
     automotores = JSON.parse(str_automotores)
 
+    if (automotores == null) {
+        automotores = []
+    }
 
     let tbody = document.getElementById('list_body')
     tbody.innerHTML = ""
@@ -21,7 +24,7 @@ function listarAutomotores() {
         row += "<td>" + element['modelo'] + "</td>"
         row += "<td>" + element['propietario'] + "</td>"
         row += "<td><button> Modificar </button> </td>"
-        row += "<td><button onclick='eliminar("+ index + ")'> Eliminar </button> </td>"
+        row += "<td><button onclick='eliminar(" + index + ")'> Eliminar </button> </td>"
         row += "</tr>"
         tbody.innerHTML += row
     }
@@ -34,7 +37,7 @@ function crearAutomotor() {
     if (es_valido) {
         //Agregar el automotor a una lista
         automotores.push(automotor)
-        localStorage.setItem("lista_automores", JSON.stringify(automotores))
+        localStorage.setItem("lista_automotores", JSON.stringify(automotores))
         console.log(automotores);
     }
     listarAutomotores()
@@ -97,6 +100,10 @@ function obtenerDatos() {
  */
 function eliminar(fila) {
     console.log("Fila", fila);
-    //
+    automotores.splice(fila, 1)
+    localStorage.setItem("lista_automotores", JSON.stringify(automotores))
+    listarAutomotores()
 }
+
+automotores.splice(fila, 0,{})
 
