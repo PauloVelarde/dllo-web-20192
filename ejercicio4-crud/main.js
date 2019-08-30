@@ -1,18 +1,25 @@
 
-
+// Lista global de automotores
 let automotores = []
 
+// Fila a modificar cuando se selecciona
+let filaAModificar;
+
 listarAutomotores()
+
+
 // Listar los automotores en una tabla
 function listarAutomotores() {
     //Cargar automotores del localstorage
     let str_automotores = localStorage.getItem("lista_automotores")
+    // Parse a Array
     automotores = JSON.parse(str_automotores)
 
     if (automotores == null) {
         automotores = []
     }
 
+    // Agregar filas a la tabla
     let tbody = document.getElementById('list_body')
     tbody.innerHTML = ""
     for (let index = 0; index < automotores.length; index++) {
@@ -23,11 +30,49 @@ function listarAutomotores() {
         row += "<td>" + element['placa'] + "</td>"
         row += "<td>" + element['modelo'] + "</td>"
         row += "<td>" + element['propietario'] + "</td>"
-        row += "<td><button> Modificar </button> </td>"
+        row += "<td><button onclick='modificar(" + index + ")'> Modificar </button> </td>"
         row += "<td><button onclick='eliminar(" + index + ")'> Eliminar </button> </td>"
         row += "</tr>"
         tbody.innerHTML += row
     }
+}
+
+/**
+ * Accion de modificar de la tabla
+ * @param {*} index 
+ */
+function modificar(index) {
+    let automotor = automotores[index]
+    cargarDatos(automotor)
+    //Guardar el indice de forma global
+    filaAModificar = index
+    document.getElementById('index').value = index;
+}
+
+/**
+ * Funcion cuando se guarda la informacion despues de editar,
+ * pendiente por validar datos
+ */
+function modificarGuardar() {
+    let fila = filaAModificar;
+    // fila=    document.getElementById('index').value
+    let nuevoAutomotor = obtenerDatos()
+    console.log(nuevoAutomotor);
+    automotores.splice(fila, 1, nuevoAutomotor)
+    console.log(automotores);
+    localStorage.setItem("lista_automotores", JSON.stringify(automotores))
+    listarAutomotores()
+
+}
+
+function cargarDatos(element) {
+    document.getElementById('serie').value = element.serie;
+    document.getElementById('placa').value = element.placa;
+    document.getElementById('marca').value = element.marca;
+    document.getElementById('color').value = element.color;
+    document.getElementById('propietario').value = element.propietario;
+    document.getElementById('tipo').value = element.tipo;
+    document.getElementById('modelo').value = element.modelo;
 }
 
 //Funcion para crear un automotor
@@ -43,6 +88,8 @@ function crearAutomotor() {
     listarAutomotores()
 
 }
+
+
 
 /**
  * Esta función valida los datos de un automotor
@@ -105,5 +152,5 @@ function eliminar(fila) {
     listarAutomotores()
 }
 
-automotores.splice(fila, 0,{})
+
 

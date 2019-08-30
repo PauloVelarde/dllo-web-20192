@@ -12,17 +12,20 @@
 </head>
 
 <body>
-    <!-- <form action=""> -->
+    <form action="javascript:void(0)">
     <div class="container">
-        <input class="form-control" type="text" id="serie" placeholder="Serie" />
+            <input class="form-control" type="hidden" id="index" placeholder="Serie" />
+
+
+        <input class="form-control" type="text" id="serie" placeholder="Serie" required />
         <br />
-        <input class="form-control" type="text" id="placa" placeholder="Placa" />
+        <input class="form-control" type="text" id="placa" placeholder="Placa" required />
         <br />
-        <input class="form-control" type="text" id="marca" placeholder="Marca" />
+        <input class="form-control" type="text" id="marca" placeholder="Marca" required />
         <br />
         <input class="form-control" type="color" id="color" placeholder="Color" />
         <br />
-        <input class="form-control" type="text" id="propietario" placeholder="Propietario" />
+        <input class="form-control" type="text" id="propietario" placeholder="Propietario" required />
 
 
         <br>
@@ -36,10 +39,11 @@
         <br>
         <input class="form-control" id="modelo" type="number" placeholder="Modelo" />
         <br>
-        <button class="btn btn-primary" onclick="crearAutomotor()">Crear automotor </button>
+        <input type="submit" class="btn btn-primary" onclick="crearAutomotor()" value="Crear automotor"/>
+        <button class="btn btn-primary" onclick="modificarGuardar()">Guardar modificación </button>
     </div>
 
-    <!-- </form> -->
+    </form>
 
     <hr>
 

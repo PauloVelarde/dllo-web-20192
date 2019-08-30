@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <form action="javascript:void(0)">
+            <div class="container">
+                <input class="form-control" type="hidden" id="index" placeholder="Serie" />
+
+
+                <input class="form-control" type="text" id="serie" v-model="automotor.serie" placeholder="Serie"
+                    required />
+                <br />
+                <input class="form-control" type="text" id="placa" v-model="automotor.placa" placeholder="Placa"
+                    required />
+                <br />
+                <input class="form-control" id="modelo" type="number" placeholder="Modelo" />
+                <br>
+                <input type="submit" class="btn btn-primary" v-on:click="crearAutomotor()" value="Crear automotor" />
+                <button class="btn btn-primary" onclick="modificarGuardar()">Guardar modificación </button>
+            </div>
+
+        </form>
+        {{automotor}}
+        <hr>
+
+        <table border="1">
+            <thead>
+                <td>Serie</td>
+                <td>Placa</td>
+                <td>Modelo</td>
+                <td>Propietario</td>
+                <td>Ac. Modificar</td>
+                <td>Ac. Eliminar</td>
+            </thead>
+            <tbody id="list_body">
+                <tr v-for="a in automotores">
+                    {{a}}
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>
